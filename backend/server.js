@@ -92,7 +92,7 @@ if (require.main === module) {
   startServer();
 }
 
-module.exports = app;o;
+module.exports = app;
 
 // ==========================================
 // GRACEFUL SHUTDOWN
