@@ -3,7 +3,7 @@ const router = express.Router();
 
 const PoojaBooking = require("../models/PoojaBooking");
 const Rating = require("../models/Rating");
-const Donation = require("../models/donation");
+const Donation = require("../models/Donation");
 
 router.get("/stats", async (req, res) => {
   try {
