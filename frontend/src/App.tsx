@@ -29,6 +29,8 @@ import {
   X,
 } from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 function SharePublicTempleDialog({
   open,
   publicUrl,
@@ -395,7 +397,7 @@ const [statsLoading, setStatsLoading] = useState(true);
   const [donations,setDonations]=useState<any[]>([]);
   const loadDonations = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/donations");
+    const response = await fetch(`${API_URL}/api/donations`);
 
     if (!response.ok) {
       throw new Error("Failed to load donations");
@@ -421,7 +423,7 @@ useEffect(() => {
       setEventsLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/events"
+        `${API_URL}/api/events`
       );
 
       if (!response.ok) {
@@ -775,8 +777,8 @@ const deleteMember = (memberId: string) => {
 const loadPublicData = async () => {
   try {
     const [eventsRes, donationsRes] = await Promise.all([
-      fetch("http://localhost:5000/api/events"),
-      fetch("http://localhost:5000/api/donations"),
+      fetch(`${API_URL}/api/events`),
+      fetch(`${API_URL}/api/donations`),
     ]);
 
     if (eventsRes.ok) {
@@ -820,8 +822,8 @@ useEffect(() => {
       setStatsLoading(true);
 
       const [statsRes, bookingsRes] = await Promise.all([
-        fetch("http://localhost:5000/api/dashboard/stats"),
-        fetch("http://localhost:5000/api/pooja-bookings"),
+        fetch(`${API_URL}/api/dashboard/stats`),
+        fetch(`${API_URL}/api/pooja-bookings`),
       ]);
 
       if (!statsRes.ok) {
@@ -2756,7 +2758,7 @@ useEffect(() => {
 
                 const response =
                   await fetch(
-                    "http://localhost:5000/api/pooja-bookings",
+                    `${API_URL}/api/pooja-bookings`,
                     {
                       method: "POST",
                       headers: {
@@ -3284,7 +3286,7 @@ useEffect(() => {
 
                 try {
   const response = await fetch(
-    "http://localhost:5000/api/donations",
+    `${API_URL}/api/donations`,
     {
       method: "POST",
       headers: {
@@ -3654,7 +3656,7 @@ if (path === "/create-event") {
                 try {
 
                   const response = await fetch(
-                    "http://localhost:5000/api/events",
+                    `${API_URL}/api/events`,
                     {
                       method: "POST",
                       headers: {
